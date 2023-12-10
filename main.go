@@ -50,8 +50,8 @@ func main() {
 
     http.Handle("/", corsHandler)
 
-	fmt.Print("\tCORS started, Starting server at localhost:8000\n") ////////////////////////////
-    http.ListenAndServe(":8000", nil)
+	fmt.Print("\tCORS started, Starting server at 0.0.0.0:8000\n") ////////////////////////////
+    http.ListenAndServe("0.0.0.0:8000", nil)
 
 	fmt.Print("\tmain process finished\n") ////////////////////////////////////////////////
 }
@@ -72,10 +72,10 @@ func ProcessSingle(w http.ResponseWriter, r *http.Request) {
 
 	// Process and measure time for sequential sorting
 	startTime := time.Now()
-	fmt.Println("Start Time:", startTime) // Print start time for debugging
+	// fmt.Println("Start Time:", startTime) // Print start time for debugging
 	response.SortedArrays = SequentialSort(request.ToSort)
 	endTime := time.Now()
-	fmt.Println("End Time:", endTime) // Print end time for debugging
+	// fmt.Println("End Time:", endTime) // Print end time for debugging
 	response.TimeNs = endTime.Sub(startTime).Nanoseconds()
 
 	// Return the response as JSON
@@ -99,10 +99,10 @@ func ProcessConcurrent(w http.ResponseWriter, r *http.Request) {
 
 	// Process and measure time for concurrent sorting
 	startTime := time.Now()
-	fmt.Println("Start Time:", startTime) // Print start time for debugging
+	// fmt.Println("Start Time:", startTime) // Print start time for debugging
 	response.SortedArrays = ConcurrentSort(request.ToSort)
 	endTime := time.Now()
-	fmt.Println("End Time:", endTime) // Print end time for debugging
+	// fmt.Println("End Time:", endTime) // Print end time for debugging
 	response.TimeNs = endTime.Sub(startTime).Nanoseconds()
 
 	// Return the response as JSON
