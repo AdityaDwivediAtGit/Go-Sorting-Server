@@ -93,6 +93,13 @@ curl -X POST \
   https://go-sorting-server-production-a169.up.railway.app/process-concurrent
 ```
 
-### Example Run
-
 ![image](https://github.com/AdityaDwivediAtGit/Go-Sorting-Server/assets/107645490/abf3d419-b2a8-4485-8ff5-db74ac598f75)
+
+
+### Contributions
+
+Feel free to provide feedback or suggestions! Contributions are welcome.
+
+---
+
+**Author: Aditya Dwivedi**
