@@ -7,6 +7,7 @@ import (
 	"sort"
 	"sync"
 	"time"
+	"os"
 )
 
 // Request structure to parse incoming JSON payload
@@ -36,6 +37,14 @@ func main() {
 	fmt.Print("\tmain process started\n") ////////////////////////////////////////////////
     http.HandleFunc("/process-single", ProcessSingle)
     http.HandleFunc("/process-concurrent", ProcessConcurrent)
+	// http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+	// 	fmt.Fprint(w, "Hello Aditya, Tested success ! Railway sorting server Active !")
+	// })
+
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8000" // Set a default port if PORT is not specified (for local host there is no env var, it just fetches from railway)
+	}
 
     // Enable CORS (allow all origins)
     corsHandler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -50,8 +59,8 @@ func main() {
 
     http.Handle("/", corsHandler)
 
-	fmt.Print("\tCORS started, Starting server at 0.0.0.0:8000\n") ////////////////////////////
-    http.ListenAndServe("0.0.0.0:8000", nil)
+	fmt.Println("\tCORS started, Starting server at 0.0.0.0:"+port) ////////////////////////////
+    http.ListenAndServe("0.0.0.0:"+port, nil)
 
 	fmt.Print("\tmain process finished\n") ////////////////////////////////////////////////
 }
